@@ -17,6 +17,7 @@ public class PlayerShoot : MonoBehaviour
         {
             GameObject bullet = Instantiate(fireBullet, transform.position, Quaternion.identity);
             bullet.GetComponent<FireBullet>().Speed *= transform.localScale.x;
+            SoundManagerScript.PlaySound("shoot1");
         }
     }
 }
