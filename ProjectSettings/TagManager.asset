@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Snail
+  - Beetle
+  - Bullet
+  - Spider
+  - Bird
+  - Coin
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -12,6 +19,8 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
+  - Enemies
   - Ground
   - 
   - 
@@ -36,9 +45,25 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1153740261
+    locked: 0
+  - name: Water
+    uniqueID: 3281771939
+    locked: 0
+  - name: Tree
+    uniqueID: 4074552053
+    locked: 0
+  - name: Ground
+    uniqueID: 1339850971
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemies
+    uniqueID: 336941749
+    locked: 0
+  - name: Player
+    uniqueID: 2133674673
     locked: 0
