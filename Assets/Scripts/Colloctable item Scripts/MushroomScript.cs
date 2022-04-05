@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class MushroomScript : MonoBehaviour
 {
-    
+    private GameObject player;
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag(MyTags.PLAYER_TAG);
     }
 
     void Update()
@@ -20,6 +21,7 @@ public class MushroomScript : MonoBehaviour
         if (target.tag == MyTags.MUSHROOM_TAG)
         {
             target.gameObject.SetActive(false);
+            player.GetComponent<PlayerDamage>().takeHeal();
             Vector3 tempScale = transform.localScale;
             tempScale.y = 1.1f;
             transform.localScale = tempScale;

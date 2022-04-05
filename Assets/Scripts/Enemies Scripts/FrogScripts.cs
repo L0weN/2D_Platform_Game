@@ -16,7 +16,6 @@ public class FrogScripts : MonoBehaviour
 
     private GameObject player;
 
-    private string coroutine_Name = "FrogJump";
 
     void Awake()
     {
@@ -25,7 +24,7 @@ public class FrogScripts : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(coroutine_Name);
+        StartCoroutine(FrogJump(3f));
         player = GameObject.FindGameObjectWithTag(MyTags.PLAYER_TAG);
     }
 
@@ -48,9 +47,9 @@ public class FrogScripts : MonoBehaviour
         }
     }
 
-    IEnumerator FrogJump()
+    IEnumerator FrogJump(float jumpTime)
     {
-        yield return new WaitForSeconds(Random.Range(1f, 4f));
+        yield return new WaitForSeconds(jumpTime);
 
         animation_Started = true;
         animation_Finished = false;
@@ -65,7 +64,7 @@ public class FrogScripts : MonoBehaviour
         {
             anim.Play("FrogJumpRight");
         }
-        StartCoroutine(coroutine_Name);
+        StartCoroutine(FrogJump(3f));
     }
     void AnimationFinished()
     {
@@ -94,12 +93,13 @@ public class FrogScripts : MonoBehaviour
         {
             anim.Play("FrogDead");
             StartCoroutine(FrogDead());
+            
         }
         
     }
     IEnumerator FrogDead()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         gameObject.SetActive(false);
     }
 }

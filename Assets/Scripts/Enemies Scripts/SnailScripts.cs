@@ -87,7 +87,7 @@ public class SnailScripts : MonoBehaviour
                 {
                     if (tag != MyTags.BEETLE_TAG)
                     {
-                        myBody.velocity = new Vector2(-15f, myBody.velocity.y);
+                        myBody.velocity = new Vector2(15f, myBody.velocity.y);
                         StartCoroutine(Dead(3f));
                     }
                 }

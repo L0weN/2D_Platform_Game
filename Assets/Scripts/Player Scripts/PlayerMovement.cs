@@ -14,7 +14,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded;
     private bool jumped;
-
+    private bool takenDamage;
+    private bool rightWalk;
+    private bool canWalk = true;
     private float jumpPower = 12f;
 
     void Awake()
@@ -25,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
+        rightWalk = true;
     }
 
     void Update()
@@ -42,22 +44,27 @@ public class PlayerMovement : MonoBehaviour
     void PlayerWalk()
     {
         float h = Input.GetAxisRaw("Horizontal");
-
-        if (h > 0)
+        if (canWalk)
         {
-            myBody.velocity = new Vector2(speed, myBody.velocity.y);
-            ChangeDirection(1);
+            if (h > 0)
+            {
+                myBody.velocity = new Vector2(speed, myBody.velocity.y);
+                ChangeDirection(1);
+                rightWalk = true;
+            }
+            else if (h < 0)
+            {
+                myBody.velocity = new Vector2(-speed, myBody.velocity.y);
+                ChangeDirection(-1);
+                rightWalk=false;
+            }
+            else
+            {
+                myBody.velocity = new Vector2(0f, myBody.velocity.y);
+            }
+            anim.SetInteger("Speed", Mathf.Abs((int)myBody.velocity.x));
         }
-        else if (h < 0)
-        {
-            myBody.velocity = new Vector2(-speed, myBody.velocity.y);
-            ChangeDirection(-1);
-        }
-        else
-        {
-            myBody.velocity = new Vector2(0f, myBody.velocity.y);
-        }
-        anim.SetInteger("Speed", Mathf.Abs((int)myBody.velocity.x));
+        
 
     }
 
@@ -95,6 +102,34 @@ public class PlayerMovement : MonoBehaviour
                 SoundManagerScript.PlaySound("jump1");
             }
         }
+    }
+
+    public void playerTakeDamage()
+    {
+        if (!takenDamage)
+        {
+            anim.SetBool("Damage", true);
+            if (rightWalk)
+            {
+                myBody.velocity = new Vector2(-5f, myBody.velocity.y);
+            }
+            else
+            {
+                myBody.velocity = new Vector2(5f, myBody.velocity.y);
+            }
+            
+        }
+        takenDamage = true;
+        canWalk = false;
+        StartCoroutine(takeDamage());
+    }
+
+    IEnumerator takeDamage()
+    {
+        yield return new WaitForSeconds(2f);
+        takenDamage = false;
+        canWalk = true;
+        anim.SetBool("Damage", false);
     }
 
 }

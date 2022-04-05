@@ -8,7 +8,7 @@ public class PlayerDamage : MonoBehaviour
 {
     public int healthCount;
     private Text healthText;
-
+    private GameObject player;
     private bool canTakeDamage;
     
     void Awake()
@@ -23,6 +23,7 @@ public class PlayerDamage : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
+        player = GameObject.FindGameObjectWithTag(MyTags.PLAYER_TAG);
     }
 
     void Update()
@@ -38,6 +39,7 @@ public class PlayerDamage : MonoBehaviour
             if (healthCount >= 0)
             {
                 healthText.text = "x" + healthCount;
+                player.GetComponent<PlayerMovement>().playerTakeDamage();
             }
             if (healthCount == 0)
             {
@@ -47,6 +49,14 @@ public class PlayerDamage : MonoBehaviour
             canTakeDamage = false;
             StartCoroutine(WaitForDamage());
         }
+    }
+
+    public void takeHeal()
+    {
+        healthCount++; 
+        healthText.text = "x" + healthCount;
+        canTakeDamage =false;
+        StartCoroutine(WaitForDamage());
     }
 
     IEnumerator WaitForDamage()
