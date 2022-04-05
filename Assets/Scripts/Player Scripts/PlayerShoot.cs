@@ -13,7 +13,7 @@ public class PlayerShoot : MonoBehaviour
 
     void ShootBullet()
     {
-        if (Input.GetKeyDown (KeyCode.J))
+        if (Input.GetKeyDown (KeyCode.Space))
         {
             GameObject bullet = Instantiate(fireBullet, transform.position, Quaternion.identity);
             bullet.GetComponent<FireBullet>().Speed *= transform.localScale.x;

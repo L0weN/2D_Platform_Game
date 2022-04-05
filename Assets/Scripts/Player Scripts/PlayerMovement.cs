@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            if(Input.GetKey(KeyCode.Space))
+            if(Input.GetKey(KeyCode.W))
             {
                 jumped = true;
                 myBody.velocity = new Vector2(myBody.velocity.x, jumpPower);
@@ -111,11 +111,11 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Damage", true);
             if (rightWalk)
             {
-                myBody.velocity = new Vector2(-5f, myBody.velocity.y);
+                myBody.velocity = new Vector2(-5f, 5f);
             }
             else
             {
-                myBody.velocity = new Vector2(5f, myBody.velocity.y);
+                myBody.velocity = new Vector2(5f, 5f);
             }
             
         }
