@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDamage : MonoBehaviour
 {
-    private int healthCount;
+    public int healthCount;
     private Text healthText;
 
     private bool canTakeDamage;

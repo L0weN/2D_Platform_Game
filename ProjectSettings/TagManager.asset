@@ -12,6 +12,9 @@ TagManager:
   - Bird
   - Coin
   - Water
+  - Mushroom
+  - Frog
+  - Octopus
   layers:
   - Default
   - TransparentFX

@@ -56,7 +56,8 @@ public class FireBullet : MonoBehaviour
         if(target.gameObject.tag == MyTags.BEETLE_TAG 
             || target.gameObject.tag == MyTags.SNAIL_TAG 
             || target.gameObject.tag == MyTags.SPIDER_TAG 
-            || target.gameObject.tag == MyTags.BIRD_TAG)
+            || target.gameObject.tag == MyTags.BIRD_TAG
+            || target.gameObject.tag == MyTags.FROG_TAG)
         {
             anim.Play("Explode");
             canMove = false;

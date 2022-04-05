@@ -12,6 +12,7 @@ public class BonusBlock : MonoBehaviour
     private Vector3 animPosition;
     private bool startAnimate;
     private bool canAnimate = true;
+    public GameObject mushroom;
 
     void Awake()
     {
@@ -44,6 +45,8 @@ public class BonusBlock : MonoBehaviour
                     anim.Play("BlockIdle");
                     startAnimate = true;
                     canAnimate = false;
+                    GameObject mush = Instantiate(mushroom, new Vector3(transform.position.x, transform.position.y + 1f), Quaternion.identity);
+
                 }
             }
         }

@@ -88,4 +88,18 @@ public class FrogScripts : MonoBehaviour
             jumpLeft = !jumpLeft;
         }
     }
+    void OnTriggerEnter2D(Collider2D target)
+    {
+        if (target.tag == MyTags.BULLET_TAG)
+        {
+            anim.Play("FrogDead");
+            StartCoroutine(FrogDead());
+        }
+        
+    }
+    IEnumerator FrogDead()
+    {
+        yield return new WaitForSeconds(2f);
+        gameObject.SetActive(false);
+    }
 }
